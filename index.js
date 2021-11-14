@@ -56,4 +56,10 @@ var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 client.on('warn', e => { console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted'))); });
 client.on('error', e => { console.log(chalk.bgRed(e.replace(regToken, 'that was redacted'))); });
 
+client.on("ready", async () => {
+  console.log("Bot sesli kanala katıldı !!")
+  let botVoiceChannel = client.channels.cache.get("909017706022457386");
+  if (botVoiceChannel) botVoiceChannel.join().catch(err => console.error("upps... bir hata oldu kodları kontrol et "));
+});
+
 client.login(config.botToken).then(x => console.log(`${client.user.tag} olarak bota giriş yapıldı!`)).catch(err => console.error(`Bota giriş yapılamadı!\n[HATA]: ${err}`));
